@@ -1,0 +1,7 @@
+body {padding: 30px;}
+.navbar {margin-bottom: 30px;}
+.maincontent {min-height: 500px; position: relative;}
+.pull-down{position: absolute;bottom: 30px;right: 30px;}
+.btn-start-test {position: absolute; left: 42%;}
+.test-button {margin: 5px 10px;}
+.chart{height: 500px;}

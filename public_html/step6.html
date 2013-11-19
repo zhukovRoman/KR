@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Курсовой проект Жуков</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/3/bootstrap.css" rel="stylesheet">
+    <link href="css/mystyles.css" rel="stylesheet">
+  
+  </head>
+
+  <body>
+
+    <div class="container">
+
+      <!-- Static navbar -->
+      <div class="navbar navbar-default">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="index.html">КР </a>
+        </div>
+        <div class="navbar-collapse collapse">
+<!--          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Link</a></li>
+           
+          </ul>-->
+        </div><!--/.nav-collapse -->
+      </div>
+        <ol class="breadcrumb">
+          <li class="active">Приветствие</li>
+          <li class="active">Тест №1</li>
+          <li class="active">Тест №2</li>
+          <li class="active">Тест №3</li>
+          <li class="active">Тест №4</li>
+          <li class="active">Тест №5</li>
+          <li>Тест №6</li>
+          <li class="active">Тест №7</li>
+          <li class="active">Тест №8</li>
+          <li class="active">Тест №9</li>
+          <li class="active">Результаты</li>
+        </ol>
+      <!-- Main component for a primary marketing message or call to action -->
+      <div class="jumbotron maincontent">
+          <p>В этом тесте Вам так же предстоит находить кнопку с иконокой 
+              <span class="glyphicon glyphicon-floppy-disk"></span> среди 
+              других кнопок с икноками.</p>
+        <p>Как только найдете ее - кликните пе ней как можно скорее. 
+            В случае, если вы кликните на неправильную кнопку, будет 
+            выведено специальное сообщение внизу экрана.</p>
+        <p>В конце теста будет показана Ваша статистика.</p>
+        <p>Когда будете готовы - нажмите на кнопку "Начать тест".</p>
+        <a href="#" class="btn btn-danger btn-lg btn-start-test" onclick="app.start(app.btnCount2, 3)">Начать тест</a>
+      </div>
+
+    </div> <!-- /container -->
+
+    <div id="res" style="display: none;">
+        <dl>
+            <dt>Общее время:</dt>
+            <dd id="total"></dd>
+            <dt>Минимальное время:</dt>
+            <dd id="min"></dd>
+            <dt>Среднее время:</dt>
+            <dd id="avg"></dd>
+            <dt>Максимальное время:</dt>
+            <dd id="max"></dd>
+        </dl>
+        <a href="step7.html" class="btn btn-danger btn-lg btn-start-test" >Далее</a>
+    </div>
+    <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="js/jquery.json-2.4.min.js"></script>
+    <!--<script type="text/javascript" src="js/3/bootstrap.min.js"></script>-->
+    <script type="text/javascript" src="js/app.js"></script>
+    <script type="text/javascript" src="js/step3.js"></script>
+   
+  </body>
+</html>

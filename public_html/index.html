@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+    <style>
+        body {padding: 30px;}
+        .navbar {margin-bottom: 30px;}
+        .maincontent {min-height: 500px; position: relative;}
+        .pull-down{position: absolute;bottom: 30px;right: 30px;}
+        
+    </style>
+
+    <title>Курсовой проект Жуков</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/3/bootstrap.css" rel="stylesheet">
+
+  
+  </head>
+
+  <body>
+
+    <div class="container">
+
+      <!-- Static navbar -->
+      <div class="navbar navbar-default">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="index.html">КР </a>
+        </div>
+        <div class="navbar-collapse collapse">
+<!--          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Link</a></li>
+           
+          </ul>-->
+        </div><!--/.nav-collapse -->
+      </div>
+        <ol class="breadcrumb">
+          <li>Приветствие</li>
+          <li class="active">Тест №1</li>
+          <li class="active">Тест №2</li>
+          <li class="active">Тест №3</li>
+          <li class="active">Тест №4</li>
+          <li class="active">Тест №5</li>
+          <li class="active">Тест №6</li>
+          <li class="active">Тест №7</li>
+          <li class="active">Тест №8</li>
+          <li class="active">Тест №9</li>
+          <li class="active">Результаты</li>
+        </ol>
+
+      <!-- Main component for a primary marketing message or call to action -->
+      <div class="jumbotron maincontent">
+        <h2>Влияние графики на скорость восприятия информации</h2>
+        <p>Данный программный продукт разработан для исследования влияния 
+            графических пикторгамм на скорость восприятия информации</p>
+        <p>Вам будет предложено 9 простых тестов, смысл которых в нахождении одной из нескольких кнопок, 
+        при этом они будут содержать разную информацию: только текст, только графические пикторграммы, и то и другое.</p>   
+        <a href="step1.html" class="btn btn-success pull-right pull-down btn-lg">Начать</a>
+
+      </div>
+
+    </div> <!-- /container -->
+
+    <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="js/3/bootstrap.min.js"></script>
+    
+    <script>
+        window.sessionStorage.removeItem('results');
+   </script>
+  </body>
+</html>
