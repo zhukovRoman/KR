@@ -5,3 +5,23 @@ body {padding: 30px;}
 .btn-start-test {position: absolute; left: 42%;}
 .test-button {margin: 5px 10px;}
 .chart{height: 500px;}
+
+.circle {
+    height: 100px;
+padding-top: 36px;
+border-radius: 81px;
+width: 105px;
+padding-left: 8px;
+margin-left: 60px;
+}
+
+.shield {
+       height: 100px;
+padding-top: 36px;
+width: 105px;
+padding-left: 8px;
+/*-webkit-border-radius: .4em .4em 2em 2em / .4em .4em 3em 3em;
+-moz-border-radius: .4em .4em 2em 2em / .4em .4em 3em 3em;
+border-radius: .4em .4em 2em 2em / .4em .4em 3em 3em; */
+margin-left: 60px;
+}

@@ -16,6 +16,14 @@ var len = this.length;
 for (var i = 1; i < len; i++) sum+=this[i];
 return sum/len;
 };
+Array.prototype.mediana = function() {
+temp = this.sort(function(a,b){return a-b;});
+if (this.length % 2 === 0)
+    return (temp[this.length/2]+temp[this.length/2+1])/2;
+else 
+    return (temp[(this.length-1)/2]);
+};
+
 
 
 if (typeof app === 'undefined' || !app) { var app = {}; }
@@ -58,20 +66,25 @@ app.needGlyph = '<span class="glyphicon glyphicon-floppy-disk"></span>';
 app.results = [];
 app.count = 5;
 app.currentCount = 0;
-app.btnHTML = '<a href="#" class="btn btn-primary btn-lg test-button col-sm-2" onclick="@function@">@text@</a>';
+app.btnHTML = '<a href="#" class="btn btn-primary btn-lg test-button col-sm-2 @class" onclick="@function@">@text@</a>';
 //app.btnCount = 4;
 app.btnCount1 = 4;
 app.btnCount2 = 9;
 app.btnCount3 = 14;
 app.currentBtnCount = 0;
 app.type=1;
+app.currentStyle = '';
 var statistic = [];
+app.name = "test";
 //window.sessionStorage.results = $.toJSON(results); 
 
-app.start = function (btnCount, type)
+app.start = function (btnCount, type, style, name)
 { 
+   if (style !== 'undefined') 
+       app.currentStyle = style;
    app.currentBtnCount = btnCount;
    app.currentCount = app.count;
+   app.name = name;
    app.type=type;
    app.startTimeTest = new Date().getTime();
    app.iteration();
@@ -91,6 +104,7 @@ app.iteration = function ()
             else 
                 var tmp = app.btnHTML.replace('@text@',app.arrOfGlyph[rIndex]);
             tmp = tmp.replace('@function@','app.error()');
+            tmp = tmp.replace ('@class', app.currentStyle);
             buttons.push(tmp);
     }
     if (app.type===1)
@@ -100,6 +114,9 @@ app.iteration = function ()
     else 
         var tmp = app.btnHTML.replace('@text@',app.needGlyph);
     tmp = tmp.replace('@function@','app.success()');
+    
+    tmp = tmp.replace ('@class', app.currentStyle);
+    
     buttons.push(tmp);
     
     buttons = app.shuffle(buttons);
@@ -133,14 +150,18 @@ app.endtest = function (){
         'total': res,
         'min': app.results.min(),
         'max': app.results.max(),
-        'avg':  app.results.avg()
+        'avg': app.results.avg(),
+        'med': app.results.mediana(),
+        'all': app.results
     };
     var tmp = window.sessionStorage.results;
     if (tmp === 'undefined' || !tmp) { var tmp = []; }
     else 
-    var tmp =  $.parseJSON(window.sessionStorage.results); 
-    tmp.push(result);
-    window.sessionStorage.results = $.toJSON(tmp);
+    var tmp =  $.parseJSON(window.sessionStorage.results);
+    //tmp[app.name] = result;
+    //tmp.push(result);
+    window.sessionStorage.setItem(app.name, $.toJSON(result));
+    //window.sessionStorage.results = $.toJSON(tmp);
 //    console.log($.evalJSON(window.sessionStorage.resultTest1));
 };
 

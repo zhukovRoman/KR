@@ -57,103 +57,193 @@
 
     </div> <!-- /container -->
 
-    <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="js/jquery.js"></script>
     <script type="text/javascript" src="js/3/bootstrap.min.js"></script>
-    <script type="text/javascript" src="js/google.js"></script>
+    <!--<script type="text/javascript" src="js/google.js"></script>-->
+    <script src="js/charts/js/highcharts.js"></script>
     <script>
-        google.load("visualization", "1", {packages:["corechart"]});
-      google.setOnLoadCallback(drawChart);
-      function drawChart() {
-        draw1();
-        draw2();
-        draw3();
-        draw4();
+        $(function () {
+            var test1 = $.parseJSON(window.sessionStorage.getItem('test1'));
+            var test2 = $.parseJSON(window.sessionStorage.getItem('test2'));
+            var test3 = $.parseJSON(window.sessionStorage.getItem('test3'));
+            var test4 = $.parseJSON(window.sessionStorage.getItem('test4'));
+            var test5 = $.parseJSON(window.sessionStorage.getItem('test5'));
+            var test6 = $.parseJSON(window.sessionStorage.getItem('test6'));
+            var test7 = $.parseJSON(window.sessionStorage.getItem('test7'));//cirlce
+            var test8 = $.parseJSON(window.sessionStorage.getItem('test8'));//qudrate
+            var test9 = $.parseJSON(window.sessionStorage.getItem('test9'));//red
+       
+       $('#chart3').highcharts({
+            chart: {
+                type: 'bar'
+            },
+            title: {
+                text: 'Зависимость времени реагирования от цвета кнопок (при 15 элементах)'
+            },
+            xAxis: {
+                categories: ['Синий', 'Красный'],
+                title: {
+                    text: null
+                }
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Время реагирования (мс)',
+                    align: 'high'
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            tooltip: {
+                valueSuffix: ' millions'
+            },
+            plotOptions: {
+                bar: {
+                    dataLabels: {
+                        enabled: true
+                    }
+                }
+            },
+            legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'top',
+                x: -40,
+                y: 100,
+                floating: true,
+                borderWidth: 1,
+                backgroundColor: '#FFFFFF',
+                shadow: true
+            },
+            credits: {
+                enabled: false
+            },
+            series: [{
+                name: 'Минимальное время (мс)',
+                data: [test6.min,test9.min]
+            }, {
+                name: 'Среднее время (мс)',
+                data: [test6.avg,test9.avg ]
+            }, {
+                name: 'Медианное время (мс)',
+                data: [test6.med,test9.med ]
+            }, {
+                name: 'Максимальное время (мс)',
+                data: [test6.max,test9.max]
+            }]
+        });
+       
+         $('#chart2').highcharts({
+            chart: {
+                type: 'bar'
+            },
+            title: {
+                text: 'Зависимость времени реагирования от формы кнопок (при 15 элементах)'
+            },
+            xAxis: {
+                categories: ['Прямоугольник', 'Круг', 'Квадрат'],
+                title: {
+                    text: null
+                }
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Время реагирования (мс)',
+                    align: 'high'
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            tooltip: {
+                valueSuffix: ' millions'
+            },
+            plotOptions: {
+                bar: {
+                    dataLabels: {
+                        enabled: true
+                    }
+                }
+            },
+            legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'top',
+                x: -40,
+                y: 100,
+                floating: true,
+                borderWidth: 1,
+                backgroundColor: '#FFFFFF',
+                shadow: true
+            },
+            credits: {
+                enabled: false
+            },
+            series: [{
+                name: 'Минимальное время (мс)',
+                data: [test6.min,test7.min,test8.min ]
+            }, {
+                name: 'Среднее время (мс)',
+                data: [test6.avg,test7.avg,test8.avg ]
+            }, {
+                name: 'Медианное время (мс)',
+                data: [test6.med,test7.med,test8.med ]
+            }, {
+                name: 'Максимальное время (мс)',
+                data: [test6.max,test7.max,test8.max ]
+            }]
+        });
+     
         
-      }
-      function draw1 ()
-      {
-          var tmp = $.parseJSON(window.sessionStorage.results);
-        var test1 = tmp[0];
-        var test2 = tmp[1];
-        var test3 = tmp[2];
-        var data = google.visualization.arrayToDataTable([
-          ['Затраченное время (мс)', 'Только текст', 'Текст + графика', 'Только графика'],
-          ['Минимальное',             test1.min,      test2.min,        test3.min],
-          ['Среднее',                 test1.avg,      test2.avg,        test3.avg],
-          ['Максимальное',            test1.max,      test2.max,        test3.max]          
-        ]);
-        var options = {
-          title: 'Статистика затраченно времени на поиск кнопки при 5 кнопках',
-          hAxis: {title: 'Затраченное время (мс)', titleTextStyle: {color: 'red'}}
-        };
-        var chart = new google.visualization.ColumnChart(document.getElementById('chart1'));
-        chart.draw(data, options);
-      }
-      function draw2 ()
-      {
-        var tmp = $.parseJSON(window.sessionStorage.results);
-        var test1 = tmp[3];
-        var test2 = tmp[4];
-        var test3 = tmp[5];
-        var data = google.visualization.arrayToDataTable([
-          ['Затраченное время (мс)', 'Только текст', 'Текст + графика', 'Только графика'],
-          ['Минимальное',             test1.min,      test2.min,        test3.min],
-          ['Среднее',                 test1.avg,      test2.avg,        test3.avg],
-          ['Максимальное',            test1.max,      test2.max,        test3.max]          
-        ]);
-        var options = {
-          title: 'Статистика затраченно времени на поиск кнопки при 10 кнопках',
-          hAxis: {title: 'Затраченное время (мс)', titleTextStyle: {color: 'red'}}
-        };
-        var chart = new google.visualization.ColumnChart(document.getElementById('chart2'));
-        chart.draw(data, options);
-      }
-      function draw3 ()
-      {
-          var tmp = $.parseJSON(window.sessionStorage.results);
-        var test1 = tmp[0];
-        var test2 = tmp[1];
-        var test3 = tmp[2];
-        var data = google.visualization.arrayToDataTable([
-          ['Затраченное время (мс)', 'Только текст', 'Текст + графика', 'Только графика'],
-          ['Минимальное',             test1.min,      test2.min,        test3.min],
-          ['Среднее',                 test1.avg,      test2.avg,        test3.avg],
-          ['Максимальное',            test1.max,      test2.max,        test3.max]          
-        ]);
-        var options = {
-          title: 'Статистика затраченно времени на поиск кнопки при 15 кнопках',
-          hAxis: {title: 'Затраченное время (мс)', titleTextStyle: {color: 'red'}}
-        };
-        var chart = new google.visualization.ColumnChart(document.getElementById('chart3'));
-        chart.draw(data, options);
-      }
-      function draw4 ()
-      {
-          var tmp = $.parseJSON(window.sessionStorage.results);
-        var test1 = tmp[0];
-        var test2 = tmp[1];
-        var test3 = tmp[2];
-        var test4 = tmp[3];
-        var test5 = tmp[4];
-        var test6 = tmp[5];
-        var test7 = tmp[6];
-        var test8 = tmp[7];
-        var test9 = tmp[8];
-        var data = google.visualization.arrayToDataTable([
-          ['Число кнопок', 'Текст',         'Текст+Икнока', 'Иконка'],
-          ['5',             test1.avg,     test2.avg,    test3.avg],
-          ['10',            test4.avg,     test5.avg,    test6.avg],
-          ['15',            test7.avg,     test8.avg,    test9.avg]
-        ]);
-
-        var options = {
-          title: 'Среднее время реагирования от числа кнопок'
-        };
-
-        var chart = new google.visualization.LineChart(document.getElementById('chart4'));
-        chart.draw(data, options);
-      
-      }
+        
+        $('#chart1').highcharts({
+            
+            title: {
+                text: 'Зависимость времени реагирования от числа кнопок и содержимого кнопок'
+            },
+            xAxis: {
+                categories: ['5', '15']
+            },
+            yAxis: {
+                title: {
+                    text: 'Медианное время реагирования (мс)'
+                }   
+            },
+            tooltip: {
+                pointFormat: '{series.name} produced <b>{point.y:,.0f}</b><br/>warheads in {point.x}'
+            },
+            plotOptions: {
+                area: {
+                    pointStart: 1940,
+                    marker: {
+                        enabled: false,
+                        symbol: 'circle',
+                        radius: 2,
+                        states: {
+                            hover: {
+                                enabled: true
+                            }
+                        }
+                    }
+                }
+            },
+            series: [{
+                name: 'только текст',
+                data: [test1.med, test4.med]
+            }, {
+                name: 'текст+графика',
+                data: [test2.med, test5.med]
+            },{
+                name: 'только графика',
+                data: [test3.med, test6.med]
+            }]
+        });
+    });
+    
+  
    </script>
   </body>
 </html>
