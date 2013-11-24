@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Курсовой проект Жуков</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/3/bootstrap.css" rel="stylesheet">
+    <link href="css/mystyles.css" rel="stylesheet">
+  
+  </head>
+
+  <body>
+
+    <div class="container">
+
+      <!-- Static navbar -->
+      <div class="navbar navbar-default">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="index.html">КР </a>
+        </div>
+        <div class="navbar-collapse collapse">
+<!--          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Link</a></li>
+           
+          </ul>-->
+        </div><!--/.nav-collapse -->
+      </div>
+        
+
+      <!-- Main component for a primary marketing message or call to action -->
+      <div class="jumbotron" >
+          <div id="chart1" class="chart"></div>
+          <div id="chart2" class="chart"></div>
+          <div id="chart3" class="chart"></div>
+          <div id="chart4" class="chart"></div>
+          <div id="chart5" class="chart"></div>
+          <!--<div id="chart4" class="chart"></div>-->
+      </div>
+
+    </div> <!-- /container -->
+
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
+    <script type="text/javascript" src="js/3/bootstrap.min.js"></script>
+    <!--<script type="text/javascript" src="js/google.js"></script>-->
+    <script src="js/charts/js/highcharts.js"></script>
+    <script>
+        var graph1 = $.parseJSON(window.localStorage.getItem('graph1'));
+        var graph2 = $.parseJSON(window.localStorage.getItem('graph2'));
+        var graph3 = $.parseJSON(window.localStorage.getItem('graph3'));
+        var graph4 = $.parseJSON(window.localStorage.getItem('graph4'));
+        var graph5 = $.parseJSON(window.localStorage.getItem('graph5'));
+        
+       
+        
+        
+        
+        //var x_a = ['1', '2','3','4', '5','6', '7', '8', '9', '10', 'среднее'];
+        var x_a = [];
+        for (var i=0; i<graph1.data_both.length; i++)
+            x_a.push((i+1)+'');
+        
+        x_a.push('среднее');
+        function draw3()
+        {
+             $('#chart3').highcharts({
+            
+            title: {
+                text: 'Зависимость времени реагирования от числа кнопок и содержимого кнопок'
+            },
+            xAxis: {
+                categories: ['5', '15']
+            },
+            yAxis: {
+                title: {
+                    text: 'Среднее время реагирования всех экспертов (мс)'
+                }   
+            },
+            tooltip: {
+                pointFormat: '{series.name} produced <b>{point.y:,.0f}</b><br/>warheads in {point.x}'
+            },
+            plotOptions: {
+                area: {
+                    pointStart: 1940,
+                    marker: {
+                        enabled: false,
+                        symbol: 'circle',
+                        radius: 2,
+                        states: {
+                            hover: {
+                                enabled: true
+                            }
+                        }
+                    }
+                }
+            },
+            series: [{
+                name: 'только текст',
+                data: [graph3.data_text.five.avg(), graph3.data_text.ten.avg()]
+            }, {
+                name: 'текст+графика',
+                data: [graph3.data_both.five.avg(), graph3.data_both.ten.avg()]
+            },{
+                name: 'только графика',
+                data: [graph3.data_icon.five.avg(), graph3.data_icon.ten.avg()]
+            }]
+        });
+            
+        }
+        
+        function draw2()
+        {
+            
+            graph2.data_text.push(graph2.data_text.avg());
+            graph2.data_icon.push(graph2.data_icon.avg());
+            graph2.data_both.push(graph2.data_both.avg());
+            
+            console.log(graph1.data_text);
+            
+            $('#chart2').highcharts({
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: 'Распределение среднего времени поиска элемента в зависмости от его содержания при 15 элементах'
+            },
+            xAxis: {
+                categories: x_a,
+                title: {
+                    text: null
+                }
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'медианное время реагирвоания (мс)',
+                    align: 'high'
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            plotOptions: {
+                bar: {
+                    dataLabels: {
+                        enabled: true
+                    }
+                }
+            },
+            legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'top',
+                x: -30,
+                y: 30,
+                floating: true,
+                borderWidth: 1,
+                backgroundColor: '#FFFFFF',
+                shadow: true
+            },
+            credits: {
+                enabled: false
+            },
+            series: [
+               {
+                name: 'Текст (мс)',
+                data: graph2.data_text
+                }
+                ,
+                {
+                name: 'Текст + Графика (мс)',
+                data: graph2.data_both
+                }
+                ,
+                {
+                name: 'Графика (мс)',
+                data: graph2.data_icon
+                }
+            ]
+        });
+            
+        } 
+       
+        function draw1()
+        {
+            
+            graph1.data_text.push(graph1.data_text.avg());
+            graph1.data_icon.push(graph1.data_icon.avg());
+            graph1.data_both.push(graph1.data_both.avg());
+            
+            console.log(graph1.data_text);
+            
+            $('#chart1').highcharts({
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: 'Распределение среднего времени поиска элемента в зависмости от его содержания при 5 элементах'
+            },
+            xAxis: {
+                categories: x_a,
+                title: {
+                    text: null
+                }
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'медианное время реагирвоания (мс)',
+                    align: 'high'
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            plotOptions: {
+                bar: {
+                    dataLabels: {
+                        enabled: true
+                    }
+                }
+            },
+            legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'top',
+                x: -30,
+                y: 30,
+                floating: true,
+                borderWidth: 1,
+                backgroundColor: '#FFFFFF',
+                shadow: true
+            },
+            credits: {
+                enabled: false
+            },
+            series: [
+               {
+                name: 'Текст (мс)',
+                data: graph1.data_text
+                }
+                ,
+                {
+                name: 'Текст + Графика (мс)',
+                data: graph1.data_both
+                }
+                ,
+                {
+                name: 'Графика (мс)',
+                data: graph1.data_icon
+                }
+            ]
+        });
+            
+        } 
+        
+        function draw4()
+        {
+            
+            graph4.data_circle.push(graph4.data_circle.avg());
+            graph4.data_quad.push(graph4.data_quad.avg());
+            graph4.data_rect.push(graph4.data_rect.avg());
+            
+            
+            
+            $('#chart4').highcharts({
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: 'Распределение среднего времени поиска элемента в зависмости от его формы при 15 элементах'
+            },
+            xAxis: {
+                categories: x_a,
+                title: {
+                    text: null
+                }
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'медианное время реагирвоания (мс)',
+                    align: 'high'
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            plotOptions: {
+                bar: {
+                    dataLabels: {
+                        enabled: true
+                    }
+                }
+            },
+            legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'top',
+                x: -30,
+                y: 30,
+                floating: true,
+                borderWidth: 1,
+                backgroundColor: '#FFFFFF',
+                shadow: true
+            },
+            credits: {
+                enabled: false
+            },
+            series: [
+               {
+                name: 'Круг (мс)',
+                data: graph4.circle
+                }
+                ,
+                {
+                name: 'Квадрат (мс)',
+                data: graph4.data_quad
+                }
+                ,
+                {
+                name: 'Прямоугольник (мс)',
+                data: graph4.data_rect
+                }
+            ]
+        });
+            
+        } 
+        
+        function draw5()
+        {
+            
+            graph5.data_blue.push(graph5.data_blue.avg());
+            graph5.data_red.push(graph5.data_red.avg());
+            graph5.data_poluton.push(graph5.data_poluton.avg());
+            
+            
+            
+            $('#chart5').highcharts({
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: 'Распределение среднего времени поиска элемента в зависмости от его цвета при 15 элементах'
+            },
+            xAxis: {
+                categories: x_a,
+                title: {
+                    text: null
+                }
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'медианное время реагирвоания (мс)',
+                    align: 'high'
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            plotOptions: {
+                bar: {
+                    dataLabels: {
+                        enabled: true
+                    }
+                }
+            },
+            legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'top',
+                x: -30,
+                y: 30,
+                floating: true,
+                borderWidth: 1,
+                backgroundColor: '#FFFFFF',
+                shadow: true
+            },
+            credits: {
+                enabled: false
+            },
+            series: [
+               {
+                name: ' Красная (мс)',
+                data: graph5.data_red
+                }
+                ,
+                {
+                name: 'Синяя (мс)',
+                data: graph5.data_blue
+                }
+                ,
+                {
+                name: 'Голубая (мс)',
+                data: graph5.data_poluton
+                }
+            ]
+        });
+            
+        } 
+       
+        $(function () {
+            
+       
+            draw1();
+            draw2();
+            draw3();
+            draw4();
+            draw5();
+            //saveResults();
+             
+       
+    });
+    
+  
+   </script>
+  </body>
+</html>

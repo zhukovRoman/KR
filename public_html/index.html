@@ -57,13 +57,11 @@
 
       <!-- Main component for a primary marketing message or call to action -->
       <div class="jumbotron maincontent">
-        <h2>Влияние графики на скорость восприятия информации</h2>
+        <h2>Влияние графического оформления элемента "Кнопка" на скорость работы оператора</h2>
         <p>Данный программный продукт разработан для исследования влияния 
-            графических пикторгамм на скорость восприятия информации</p>
-        <p>Вам будет предложено 9 простых тестов, смысл которых в нахождении одной из нескольких кнопок, 
-        при этом они будут содержать разную информацию: только текст, только графические пикторграммы, 
-        и то и другое.</p>
-        <p>Так же будут изменяться геометрические формы кнопок.</p>
+             графического оформления элемента "Кнопка" на скорость работы оператора</p>
+        <p>Вам будет предложено 10 простых тестов, смысл которых в нахождении одной из нескольких кнопок, 
+        при этом они будут по-разному оформлены: будут изменятся шеометрические формы кнопок, их цвета и содержание.</p>
         <a href="step1.html" class="btn btn-success pull-right pull-down btn-lg">Начать</a>
 
       </div>
@@ -74,7 +72,29 @@
     <script type="text/javascript" src="js/3/bootstrap.min.js"></script>
     
     <script>
-        window.sessionStorage.removeItem('results');
+        var temp;
+        
+        temp = window.localStorage.getItem('graph1');
+        if (temp === null)
+            temp = window.localStorage.setItem('graph1','{"data_text":[], "data_icon":[], "data_both":[]}');
+        
+        temp = window.localStorage.getItem('graph2');
+        if (temp === null)
+            window.localStorage.setItem('graph2','{"data_text":[], "data_icon":[], "data_both":[]}');
+        
+        temp = window.localStorage.getItem('graph3');
+        if (temp === null)
+            window.localStorage.setItem('graph3','{"data_text":{"ten":[],"five":[]},\n\
+                 "data_icon":{"ten":[],"five":[]}, \n\
+                "data_both":{"ten":[],"five":[]}}');
+        
+        temp = window.localStorage.getItem('graph4');
+        if (temp === null)
+            window.localStorage.setItem('graph4','{"data_circle":[], "data_quad":[], "data_rect":[]}');
+        
+        temp = window.localStorage.getItem('graph5');
+        if (temp === null)
+            window.localStorage.setItem('graph5','{"data_blue":[], "data_red":[], "data_poluton":[]}');
    </script>
   </body>
 </html>

@@ -13,7 +13,7 @@ return min;
 Array.prototype.avg = function() {
 var sum = 0;
 var len = this.length;
-for (var i = 1; i < len; i++) sum+=this[i];
+for (var i = 0; i < len; i++) sum=sum+this[i];
 return sum/len;
 };
 Array.prototype.mediana = function() {
@@ -64,7 +64,7 @@ app.arrOfGlyph = [
 ];
 app.needGlyph = '<span class="glyphicon glyphicon-floppy-disk"></span>';
 app.results = [];
-app.count = 5;
+app.count = 3;
 app.currentCount = 0;
 app.btnHTML = '<a href="#" class="btn btn-primary btn-lg test-button col-sm-2 @class" onclick="@function@">@text@</a>';
 //app.btnCount = 4;
@@ -154,13 +154,13 @@ app.endtest = function (){
         'med': app.results.mediana(),
         'all': app.results
     };
-    var tmp = window.sessionStorage.results;
+    var tmp = window.localStorage.results;
     if (tmp === 'undefined' || !tmp) { var tmp = []; }
     else 
-    var tmp =  $.parseJSON(window.sessionStorage.results);
+    var tmp =  $.parseJSON(window.localStorage.results);
     //tmp[app.name] = result;
     //tmp.push(result);
-    window.sessionStorage.setItem(app.name, $.toJSON(result));
+    window.localStorage.setItem(app.name, $.toJSON(result));
     //window.sessionStorage.results = $.toJSON(tmp);
 //    console.log($.evalJSON(window.sessionStorage.resultTest1));
 };

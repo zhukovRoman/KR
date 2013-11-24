@@ -3,14 +3,6 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      
-    <style>
-        body {padding: 30px;}
-        .navbar {margin-bottom: 30px;}
-        .maincontent {min-height: 500px; position: relative;}
-        .pull-down{position: absolute;bottom: 30px;right: 30px;}
-        
-    </style>
 
     <title>Курсовой проект Жуков</title>
 
@@ -46,24 +38,26 @@
           <li class="active">Тест №1</li>
           <li class="active">Тест №2</li>
           <li class="active">Тест №3</li>
-          <li>Тест №4</li>
+          <li class="active">Тест №4</li>
           <li class="active">Тест №5</li>
           <li class="active">Тест №6</li>
           <li class="active">Тест №7</li>
           <li class="active">Тест №8</li>
           <li class="active">Тест №9</li>
-          <li class="active">Тест №10</li>
+          <li>Тест №10</li>
           <li class="active">Результаты</li>
         </ol>
       <!-- Main component for a primary marketing message or call to action -->
       <div class="jumbotron maincontent">
-          <p>В этом тесте Вам предстоит находить кнопку "Сохранить" среди других.</p>
+          <p>В этом тесте Вам так же предстоит находить кнопку с иконокой 
+              <span class="glyphicon glyphicon-floppy-disk"></span> среди 
+              других кнопок с икноками.</p>
         <p>Как только найдете ее - кликните пе ней как можно скорее. 
-            В случае, если вы кликните на неправильную кнопку, 
-            фон будет подсвечен красным цветом.</p>
+            В случае, если вы кликните на неправильную кнопку, будет 
+            выведено специальное сообщение внизу экрана.</p>
         <p>В конце теста будет показана Ваша статистика.</p>
         <p>Когда будете готовы - нажмите на кнопку "Начать тест".</p>
-        <a href="#" class="btn btn-danger btn-lg btn-start-test" onclick="app.start(app.btnCount3, 1, '','test4')">Начать тест</a>
+        <a href="#" class="btn btn-danger btn-lg btn-start-test" onclick="app.start(app.btnCount3, 3, 'btn-info','test10' )">Начать тест</a>
       </div>
 
     </div> <!-- /container -->
@@ -79,13 +73,13 @@
             <dt>Максимальное время:</dt>
             <dd id="max"></dd>
         </dl>
-        <a href="step5.html" class="btn btn-danger btn-lg btn-start-test" >Далее</a>
+        <a href="results.html" class="btn btn-danger btn-lg btn-start-test" >Далее</a>
     </div>
     <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
     <script type="text/javascript" src="js/jquery.json-2.4.min.js"></script>
     <!--<script type="text/javascript" src="js/3/bootstrap.min.js"></script>-->
     <script type="text/javascript" src="js/app.js"></script>
-    <!--<script type="text/javascript" src="js/step1.js"></script>-->
+    <script type="text/javascript" src="js/step3.js"></script>
    
   </body>
 </html>
